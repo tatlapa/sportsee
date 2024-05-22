@@ -1,7 +1,7 @@
-import Bodybuilding from "../../src/assets/bodybuilding.svg";
-import Cycling from "../../src/assets/cycling.svg";
-import Meditation from "../../src/assets/meditation.svg";
-import Swimming from "../../src/assets/swimming.svg";
+import Bodybuilding from "../assets/bodybuilding.svg";
+import Cycling from "../assets/cycling.svg";
+import Meditation from "../assets/meditation.svg";
+import Swimming from "../assets/swimming.svg";
 
 const AsideNav = () => {
   return (
