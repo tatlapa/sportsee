@@ -5,9 +5,11 @@ import {
   USER_PERFORMANCE,
 } from "./MockedData.tsx";
 
-const MockedAPI = () => {
+const MockedAPI = (userId: number) => {
   return {
     getUserMainData: async () => {
+      const response = fetch(`http://localhost:3000/user/${userId}`);
+      const USER_MAIN_DATA = await response.json();
       return USER_MAIN_DATA;
     },
     getUserActivity: async () => {
