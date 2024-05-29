@@ -20,16 +20,23 @@ const Home = () => {
         <div className="mx-28 my-16 w-full">
           <Greeting firstName="Thomas" />
           <div className="flex gap-4 mt-12">
-            <div className="flex flex-col w-full">
-              <Activity />
+            <div className="flex flex-col w-full gap-6">
+              <div className="bg-[#FBFBFB] w-full h-full rounded relative">
+                <p className="absolute top-4 left-4">Activité quotidienne</p>
+                <Activity />
+              </div>
               <div className="flex gap-2 h-full">
-                <div className="bg-[#FF0000] w-64 h-64">
+                <div className="bg-[#FF0000] w-64 h-64 rounded relative">
+                  <p className="absolute top-4 left-4 text-white">
+                    Durée moyenne des sessions
+                  </p>
                   <Sessions />
                 </div>
-                <div className="bg-[#282D30] w-64 h-64">
+                <div className="bg-[#282D30] w-64 h-64 rounded">
                   <SimpleRadarChart />
                 </div>
-                <div className="bg-white w-64 h-64">
+                <div className="bg-[#FBFBFB] w-64 h-64 rounded relative">
+                  <p className="absolute top-4 left-4">Score</p>
                   <ScoreChart />
                 </div>
               </div>

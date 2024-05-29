@@ -79,7 +79,7 @@ const Activity = () => {
         <XAxis dataKey="" />
         <YAxis />
         <Tooltip />
-        <Legend />
+        <Legend wrapperStyle={{top : 10, left : 20}}/>
         <Bar
           dataKey="pv"
           fill="#E60000"
