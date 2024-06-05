@@ -1,8 +1,14 @@
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 
-const data = [{ name: "A1", value: 2 }];
+interface ScoreChartProps {
+  score: number;
+}
 
-const ScoreChart = () => {
+const ScoreChart: React.FC<ScoreChartProps> = (props: ScoreChartProps) => {
+  const data = [
+    { name: "Score", value: props.score },
+    { name: "Rest", value: 100 - props.score },
+  ];
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart width={400} height={400}>
@@ -13,6 +19,7 @@ const ScoreChart = () => {
           outerRadius={90}
           fill="#FF0000"
         />
+        <p>{props.score}</p>
       </PieChart>
     </ResponsiveContainer>
   );

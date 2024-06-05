@@ -5,8 +5,8 @@ import Swimming from "../assets/swimming.svg";
 
 const AsideNav = () => {
   return (
-    <nav className="flex flex-col p-6 bg-black text-white justify-center w-fit gap-32">
-      <ul className="flex flex-col gap-4">
+    <nav className="bg-black px-7 text-white">
+      <ul className="flex flex-col gap-4 pt-[256px]">
         <li>
           <img src={Meditation}></img>
         </li>
@@ -20,7 +20,12 @@ const AsideNav = () => {
           <img src={Bodybuilding}></img>
         </li>
       </ul>
-      <p className="writingMode-vertical textOrientation-upright">Copyright, SportSee 2020</p>    </nav>
+      <div className="flex justify-center pt-40">
+        <p className="[writing-mode:vertical-lr] rotate-180">
+          Copyright, SportSee 2020
+        </p>
+      </div>
+    </nav>
   );
 };
 

@@ -10,59 +10,94 @@ import AsideNav from "../components/AsideNav";
 import Sessions from "../components/charts/SessionChart";
 import SimpleRadarChart from "../components/charts/SimpleRadarChart";
 import ScoreChart from "../components/charts/ScoreChart";
+import Api from "../services/Api";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
+  const id = 12;
+  const api = Api({ userId: id });
+
+  const { data: dataInfos, error: errorInfos } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () => api.getUserMainData(),
+  });
+
+  if (errorInfos) {
+    alert("An error has occurred: " + errorInfos.message);
+  }
+
+  // const { data: dataActivity, errorActivity } = useQuery({
+  //   queryKey: ["repoData"],
+  //   queryFn: () => api.getUserActivity(),
+  // });
+
+  // if (errorActivity) {
+  //   alert("An error has occurred: " + errorActivity.message);
+  // }
+
+    // const { data: dataSession, errorSession } = useQuery({
+  //   queryKey: ["repoData"],
+  //   queryFn: () => api.getUserSession(),
+  // });
+
+  // if (errorSession) {
+  //   alert("An error has occurred: " + errorSession.message);
+  // }
+
+    // const { data: dataPerformance, errorPerformance } = useQuery({
+  //   queryKey: ["repoData"],
+  //   queryFn: () => api.getUserPerformance(),
+  // });
+
+  // if (errorPerformance) {
+  //   alert("An error has occurred: " + errorPerformance.message);
+  // }
+
   return (
     <>
       <Header />
       <main className="flex">
         <AsideNav />
         <div className="mx-28 my-16 w-full">
-          <Greeting firstName="Thomas" />
+          <Greeting firstName={dataInfos?.userInfos?.firstName} />
           <div className="flex gap-4 mt-12">
             <div className="flex flex-col w-full gap-6">
-              <div className="bg-[#FBFBFB] w-full h-full rounded relative">
-                <p className="absolute top-4 left-4">Activité quotidienne</p>
-                <Activity />
-              </div>
-              <div className="flex gap-2 h-full">
-                <div className="bg-[#FF0000] w-64 h-64 rounded relative">
-                  <p className="absolute top-4 left-4 text-white">
-                    Durée moyenne des sessions
-                  </p>
+              <Activity />
+              <div className="flex gap-8 h-full">
+                <div className="bg-[#FF0000] w-64 h-64 rounded">
+                  <p className="absolute top-4 left-4 text-white"></p>
                   <Sessions />
                 </div>
                 <div className="bg-[#282D30] w-64 h-64 rounded">
                   <SimpleRadarChart />
                 </div>
-                <div className="bg-[#FBFBFB] w-64 h-64 rounded relative">
-                  <p className="absolute top-4 left-4">Score</p>
-                  <ScoreChart />
+                <div className="bg-[#FBFBFB] w-64 h-64 rounded">
+                  <ScoreChart score={dataInfos?.todayScore}/>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <Macronutritient
                 icon={caloriesIcon}
-                quantity={1.93}
+                quantity={dataInfos?.keyData?.calorieCount}
                 measurementUnit="kCal"
                 nutritient="Calories"
               />
               <Macronutritient
                 icon={proteinIcon}
-                quantity={1.93}
+                quantity={dataInfos?.keyData?.proteinCount}
                 measurementUnit="kCal"
                 nutritient="Protein"
               />
               <Macronutritient
                 icon={carbsIcon}
-                quantity={1.93}
+                quantity={dataInfos?.keyData?.carbohydrateCount}
                 measurementUnit="kCal"
                 nutritient="Carbs"
               />
               <Macronutritient
                 icon={fatIcon}
-                quantity={1.93}
+                quantity={dataInfos?.keyData?.lipidCount}
                 measurementUnit="kCal"
                 nutritient="Fat"
               />

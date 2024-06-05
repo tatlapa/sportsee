@@ -2,8 +2,6 @@ import {
   BarChart,
   Bar,
   Rectangle,
-  XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
@@ -65,7 +63,7 @@ const data = [
 
 const Activity = () => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height={320}>
       <BarChart
         data={data}
         margin={{
@@ -76,17 +74,15 @@ const Activity = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="" />
-        <YAxis />
         <Tooltip />
         <Legend wrapperStyle={{top : 10, left : 20}}/>
         <Bar
-          dataKey="pv"
+          dataKey="Poids (kg)"
           fill="#E60000"
           activeBar={<Rectangle fill="#E60000" stroke="blue" />}
         />
         <Bar
-          dataKey="uv"
+          dataKey="Calories brûlées (kCal)"
           fill="#282D30"
           activeBar={<Rectangle fill="#282D30" stroke="yellow" />}
         />
