@@ -1,10 +1,13 @@
 import React from "react";
+import Loading from "./Utilities/Loading";
 
 interface GreetingProps {
   firstName: string;
+  isLoading: boolean;
 }
 
 const Greeting: React.FC<GreetingProps> = (props: GreetingProps) => {
+  if (props.isLoading) return <Loading />;
   return (
     <>
       <h1>

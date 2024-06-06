@@ -55,7 +55,7 @@ const Api = ({userId}: ApiProps) => {
           `http://localhost:3000/user/${userId}/performance`
         );
         const data = await response.json();
-        return data;
+        return data.data;
       },
     };
   }
