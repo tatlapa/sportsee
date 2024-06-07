@@ -11,7 +11,9 @@ const SessionChart = (props: SessionChartProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center w-64 h-64 bg-[#FF0000] shadow-sm rounded-md text-sm">
-      <p className="self-start pl-7 font-semibold text-white opacity-50">Durée moyenne des sessions</p>
+      <p className="self-start pl-7 font-semibold text-white opacity-50">
+        Durée moyenne des sessions
+      </p>
       <ResponsiveContainer width="100%" height="60%">
         <LineChart width={300} height={100} data={props.data}>
           <Line
@@ -22,6 +24,15 @@ const SessionChart = (props: SessionChartProps) => {
           />
         </LineChart>
       </ResponsiveContainer>
+      <div className="flex self-start font-semibold text-white opacity-50 gap-7 pl-2 pt-6">
+        <p>L</p>
+        <p>M</p>
+        <p>M</p>
+        <p>J</p>
+        <p>V</p>
+        <p>S</p>
+        <p>D</p>
+      </div>
     </div>
   );
 };
