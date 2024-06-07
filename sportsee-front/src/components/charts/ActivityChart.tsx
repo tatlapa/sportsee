@@ -7,65 +7,19 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Loading from "../Utilities/Loading";
 
-const data = [
-  {
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+interface ActivityChartProps {
+  data: Array<{ kilogram: number; calories: number }>;
+  isLoading: boolean;
+}
 
-const Activity = () => {
+const ActivityChart = (props: ActivityChartProps) => {
+  if (props.isLoading) return <Loading />;
   return (
     <ResponsiveContainer width="100%" height={320}>
       <BarChart
-        data={data}
+        data={props.data}
         margin={{
           top: 5,
           right: 30,
@@ -75,14 +29,14 @@ const Activity = () => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
-        <Legend wrapperStyle={{top : 10, left : 20}}/>
+        <Legend wrapperStyle={{ top: 10, left: 20 }} />
         <Bar
-          dataKey="Poids (kg)"
+          dataKey="kilogram"
           fill="#E60000"
           activeBar={<Rectangle fill="#E60000" stroke="blue" />}
         />
         <Bar
-          dataKey="Calories brûlées (kCal)"
+          dataKey="calories"
           fill="#282D30"
           activeBar={<Rectangle fill="#282D30" stroke="yellow" />}
         />
@@ -91,4 +45,4 @@ const Activity = () => {
   );
 };
 
-export default Activity;
+export default ActivityChart;

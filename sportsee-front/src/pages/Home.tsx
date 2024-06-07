@@ -4,10 +4,10 @@ import caloriesIcon from "../assets/calories-icon.svg";
 import proteinIcon from "../assets/protein-icon.svg";
 import carbsIcon from "../assets/carbs-icon.svg";
 import fatIcon from "../assets/fat-icon.svg";
-import Activity from "../components/charts/ActivityChart";
+import ActivityChart from "../components/charts/ActivityChart";
 import Header from "../components/Header";
 import AsideNav from "../components/AsideNav";
-import Sessions from "../components/charts/SessionChart";
+import SessionChart from "../components/charts/SessionChart";
 import SimpleRadarChart from "../components/charts/SimpleRadarChart";
 import ScoreChart from "../components/charts/ScoreChart";
 import Api from "../services/Api";
@@ -31,27 +31,25 @@ const Home = () => {
     ? dataInfos.todayScore * 100
     : dataInfos?.score * 100;
 
-  // const { data: dataActivity, errorActivity } = useQuery({
-  //   queryKey: ["repoData"],
-  //   queryFn: () => api.getUserActivity(),
-  // });
+  const { data: dataActivity, error: errorActivity } = useQuery({
+    queryKey: ["repoDataActivity"],
+    queryFn: () => api.getUserActivity(),
+  });
 
-  // if (errorActivity) {
-  //   alert("An error has occurred: " + errorActivity.message);
-  // }
+  if (errorActivity) {
+    alert("An error has occurred: " + errorActivity.message);
+  }
 
-    // const { data: dataSession, errorSession } = useQuery({
-  //   queryKey: ["repoData"],
-  //   queryFn: () => api.getUserSession(),
-  // });
+    const { data: dataSession, error: errorSession } = useQuery({
+    queryKey: ["repoDataSession"],
+    queryFn: () => api.getUserSession(),
+  });
 
-  // if (errorSession) {
-  //   alert("An error has occurred: " + errorSession.message);
-  // }
+  if (errorSession) {
+    alert("An error has occurred: " + errorSession.message);
+  }
 
   interface Item {
-    id: number;
-    name: string;
     kind: number;
   }
 
@@ -77,12 +75,9 @@ const Home = () => {
           <Greeting firstName={dataInfos?.userInfos?.firstName} isLoading={isPending} />
           <div className="flex gap-4 mt-12">
             <div className="flex flex-col w-full gap-6">
-              <Activity />
+              <ActivityChart data={dataActivity?.sessions} isLoading={isPending}/>
               <div className="flex gap-8 h-full">
-                <div className="bg-[#FF0000] w-64 h-64 rounded">
-                  <p className="absolute top-4 left-4 text-white"></p>
-                  <Sessions />
-                </div>
+                  <SessionChart data={dataSession?.sessions} isLoading={isPending}/>
                   <SimpleRadarChart data={dataPerformance} isLoading={isPending}/>
                   <ScoreChart score={calculatedScore} isLoading={isPending}/>
               </div>

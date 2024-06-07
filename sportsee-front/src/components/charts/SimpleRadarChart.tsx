@@ -13,7 +13,6 @@ interface SimpleRadarChartProps {
 }
 
 const SimpleRadarChart = (props: SimpleRadarChartProps) => {
-  console.log(props.data);
   if (props.isLoading) return <Loading />;
   return (
     <div className="flex items-center justify-center w-64 h-64 bg-[#282D30] shadow-sm rounded-md text-xs">

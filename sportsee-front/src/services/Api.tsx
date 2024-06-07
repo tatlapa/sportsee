@@ -20,7 +20,7 @@ const Api = ({userId}: ApiProps) => {
       getUserActivity: async () => {
         return USER_ACTIVITY;
       },
-      getUserAverageSessions: async () => {
+      getUserSession: async () => {
         return USER_AVERAGE_SESSIONS;
       },
       getUserPerformance: async () => {
@@ -41,14 +41,14 @@ const Api = ({userId}: ApiProps) => {
           `http://localhost:3000/user/${userId}/activity`
         );
         const data = await response.json();
-        return data;
+        return data.data;
       },
-      getUserAverageSessions: async () => {
+      getUserSession: async () => {
         const response = await fetch(
           `http://localhost:3000/user/${userId}/average-sessions`
         );
         const data = await response.json();
-        return data;
+        return data.data;
       },
       getUserPerformance: async () => {
         const response = await fetch(
