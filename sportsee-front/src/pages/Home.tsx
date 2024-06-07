@@ -49,14 +49,21 @@ const Home = () => {
   //   alert("An error has occurred: " + errorSession.message);
   // }
 
+  interface Item {
+    id: number;
+    name: string;
+    kind: number;
+  }
+
   const { data: dataPerformance, error: errorPerformance } = useQuery({
     queryKey: ["repoDataPerformance"],
     queryFn: () => api.getUserPerformance(),
-    select: (data) => data.data.map((item) => ({
+    select: (data) => data.data.map((item: Item) => ({
       ...item,
       kind: data.kind[item.kind],
     })),
   });
+
   if (errorPerformance) {
     alert("An error has occurred: " + errorPerformance.message);
   }
@@ -76,9 +83,7 @@ const Home = () => {
                   <p className="absolute top-4 left-4 text-white"></p>
                   <Sessions />
                 </div>
-                <div className="bg-[#282D30] w-64 h-64 rounded">
-                  <SimpleRadarChart data={dataPerformance}/>
-                </div>
+                  <SimpleRadarChart data={dataPerformance} isLoading={isPending}/>
                   <ScoreChart score={calculatedScore} isLoading={isPending}/>
               </div>
             </div>
