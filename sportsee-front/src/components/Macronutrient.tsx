@@ -16,11 +16,11 @@ const Macronutritient: React.FC<MacronutritientProps> = (props) => {
     <div className="p-8 w-64 flex gap-4 bg-[#FBFBFB] rounded-xl">
       <img src={props.icon} alt="" />
       <div className="flex flex-col">
-        <span className="text-2xl">
+        <span className="text-2xl font-bold">
           {props.quantity}
           {props.measurementUnit}
         </span>
-        <span className="text-xs text-gray-400">{props.nutritient}</span>
+        <span className="text-sm text-gray-400">{props.nutritient}</span>
       </div>
     </div>
   );
