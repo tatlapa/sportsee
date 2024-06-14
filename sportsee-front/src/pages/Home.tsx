@@ -27,9 +27,9 @@ const Home = () => {
     queryFn: () => api.getUserMainData(),
   });
 
-  // if (errorInfos) {
-  //   alert("An error has occurred: " + errorInfos.message);
-  // }
+  if (errorInfos) {
+    alert("An error has occurred: " + errorInfos.message);
+  }
 
   const calculatedScore = dataInfos?.todayScore
     ? dataInfos.todayScore * 100
@@ -40,18 +40,18 @@ const Home = () => {
     queryFn: () => api.getUserActivity(),
   });
 
-  // if (errorActivity) {
-  //   alert("An error has occurred: " + errorActivity.message);
-  // }
+  if (errorActivity) {
+    alert("An error has occurred: " + errorActivity.message);
+  }
 
   const { data: dataSession, error: errorSession } = useQuery({
-    queryKey: ["repoDataSession", id],
-    queryFn: () => api.getUserSession(id),
+    queryKey: ["repoDataSession", ],
+    queryFn: () => api.getUserSession(),
   });
 
-  // if (errorSession) {
-  //   alert("An error has occurred: " + errorSession.message);
-  // }
+  if (errorSession) {
+    alert("An error has occurred: " + errorSession.message);
+  }
 
   interface Item {
     kind: number;
@@ -67,9 +67,9 @@ const Home = () => {
       })),
   });
 
-  // if (errorPerformance) {
-  //   alert("An error has occurred: " + errorPerformance.message);
-  // }
+  if (errorPerformance) {
+    alert("An error has occurred: " + errorPerformance.message);
+  }
 
   return (
     <>

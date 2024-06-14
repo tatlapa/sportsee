@@ -16,7 +16,6 @@ const Api = ({ userId }: ApiProps) => {
     return {
       getUserMainData: async () => {
         const data = USER_MAIN_DATA.find((user) => user.userId === userId);
-        console.log(data);
         return data;
       },
       getUserActivity: async () => {
@@ -39,7 +38,6 @@ const Api = ({ userId }: ApiProps) => {
       getUserMainData: async () => {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
-        console.log(data.data);
         return data.data;
       },
       getUserActivity: async () => {
