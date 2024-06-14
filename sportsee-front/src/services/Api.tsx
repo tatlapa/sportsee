@@ -9,31 +9,37 @@ interface ApiProps {
   userId: number;
 }
 
-const useMock = false;
+const useMock = true;
 
-const Api = ({userId}: ApiProps) => {
+const Api = ({ userId }: ApiProps) => {
   if (useMock) {
     return {
       getUserMainData: async () => {
-        return USER_MAIN_DATA;
+        const data = USER_MAIN_DATA.find((user) => user.userId === userId);
+        console.log(data);
+        return data;
       },
       getUserActivity: async () => {
-        return USER_ACTIVITY;
+        const data = USER_ACTIVITY.find((user) => user.userId === userId);
+        return data;
       },
       getUserSession: async () => {
-        return USER_AVERAGE_SESSIONS;
+        const data = USER_AVERAGE_SESSIONS.find(
+          (user) => user.userId === userId
+        );
+        return data;
       },
       getUserPerformance: async () => {
-        return USER_PERFORMANCE;
+        const data = USER_PERFORMANCE.find((user) => user.userId === userId);
+        return data;
       },
     };
   } else {
     return {
       getUserMainData: async () => {
-        const response = await fetch(
-          `http://localhost:3000/user/${userId}`
-        );
+        const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
+        console.log(data.data);
         return data.data;
       },
       getUserActivity: async () => {
